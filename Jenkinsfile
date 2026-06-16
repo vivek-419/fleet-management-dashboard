@@ -1,25 +1,34 @@
 pipeline {
-    agent any
+agent any
 
-    stages {
+```
+stages {
 
-        stage('Checkout') {
-            steps {
-                echo 'Repository cloned successfully'
-            }
-        }
-
-        stage('Verify Project') {
-            steps {
-                sh 'pwd'
-                sh 'ls -la'
-            }
-        }
-
-        stage('Success') {
-            steps {
-                echo 'Fleet Dashboard CI Pipeline Successful'
-            }
+    stage('Checkout') {
+        steps {
+            echo 'Repository cloned successfully'
         }
     }
+
+    stage('Verify Project') {
+        steps {
+            sh 'pwd'
+            sh 'ls -la'
+        }
+    }
+
+    stage('Build Docker Image') {
+        steps {
+            sh 'echo Building Fleet Dashboard'
+        }
+    }
+
+    stage('Deployment Verification') {
+        steps {
+            sh 'echo Deployment Ready'
+        }
+    }
+}
+```
+
 }
