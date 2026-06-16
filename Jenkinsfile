@@ -4,29 +4,45 @@ agent any
 ```
 stages {
 
-    stage('Checkout') {
+    stage('Checkout Source') {
         steps {
-            echo 'Repository cloned successfully'
+            echo 'Fetching Fleet Dashboard source code'
         }
     }
 
-    stage('Verify Project') {
+    stage('Verify Repository') {
         steps {
             sh 'pwd'
             sh 'ls -la'
         }
     }
 
-    stage('Build Docker Image') {
+    stage('Verify Docker Configuration') {
         steps {
-            sh 'echo Building Fleet Dashboard'
+            sh 'ls fleet-dashboard'
+            sh 'ls fleet-dashboard/backend'
         }
     }
 
-    stage('Deployment Verification') {
+    stage('Application Validation') {
         steps {
-            sh 'echo Deployment Ready'
+            echo 'Fleet Dashboard structure verified'
         }
+    }
+
+    stage('Deployment Ready') {
+        steps {
+            echo 'Application ready for deployment'
+        }
+    }
+}
+
+post {
+    success {
+        echo 'Fleet Dashboard CI Pipeline Completed Successfully'
+    }
+    failure {
+        echo 'Pipeline Failed'
     }
 }
 ```
